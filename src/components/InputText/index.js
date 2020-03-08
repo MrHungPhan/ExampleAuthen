@@ -11,9 +11,10 @@ const WrapperInput = styled("div")`
     color: ${({ theme }) => theme.darkPrimary};
   }
   input {
+    color: ${({ theme }) => theme.darkPrimary};
     height: 42px;
     width: 100%;
-    font-size: 16px;
+    font-size: 13px;
     border-radius: 6px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -23,15 +24,26 @@ const WrapperInput = styled("div")`
       border-color: ${({ theme }) => theme.bluePrimary};
     }
   }
+  ${({ error, theme }) =>
+    error &&
+    `input {
+    border-color: ${theme.redPrimary}
+  }`}
+  .error_input {
+    display: block;
+    margin-top: 10px;
+    color: ${({ theme }) => theme.redPrimary};
+    font-size: 12px;
+  }
 `;
 
-const InputText = ({ label, type, value, onChange, disabled }) => {
+const InputText = ({ label, type, value, onChange, disabled, error }) => {
   function handleChange(e) {
     onChange(e.target.value);
   }
 
   return (
-    <WrapperInput>
+    <WrapperInput error={error}>
       {label && <label>{label}</label>}
       <input
         disabled={disabled}
@@ -39,6 +51,7 @@ const InputText = ({ label, type, value, onChange, disabled }) => {
         value={value}
         onChange={handleChange}
       />
+      {error && <span className="error_input">{error}</span>}
     </WrapperInput>
   );
 };

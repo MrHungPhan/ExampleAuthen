@@ -1,6 +1,7 @@
 const routes = {
-  main: '/',
-  login: '/login'
-}
+  main: "/",
+  login: "/login",
+  notfound: "/notfound"
+};
 
 export { routes };

@@ -1,7 +1,7 @@
-import rootStore from 'stores';
+import rootStore from "stores";
 
 const useStore = () => {
-  return {...rootStore};
-}
+  return { ...rootStore };
+};
 
 export { useStore };

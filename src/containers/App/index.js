@@ -1,15 +1,25 @@
-import React, { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { routes } from '../../utility/constants';
+import React, { useMemo } from "react";
+import { observer } from "mobx-react";
+import { hasLogin } from "utility/cookieStorage";
 
-const LoginPage = lazy(() => import('../LoginPage/connected'));
+import { useStore } from "hooks/useStore";
+import MainLayout from "../MainLayout";
+import LoginPage from "../LoginPage/connected";
 
 const App = () => {
-  return <Switch>
-    <Suspense fallback>
-      <Route exact path={routes.login} component={LoginPage} />
-    </Suspense>
-  </Switch>
-}
+  const {
+    appStore: { isLoading }
+  } = useStore();
+  // const isLogin = useMemo(() => hasLogin(), []);
 
-export default App;
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!hasLogin()) {
+    return <LoginPage />;
+  }
+  return <MainLayout />;
+};
+
+export default observer(App);
