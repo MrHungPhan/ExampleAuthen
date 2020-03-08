@@ -6,10 +6,17 @@ import LoginPage from "../index";
 
 const LoginPageConnected = () => {
   const {
-    appStore: { user, handleChangeLoginMeta }
+    appStore: { user, handleChangeLoginMeta, dispatchLogin, errors }
   } = useStore();
 
-  return <LoginPage user={user} handleChange={handleChangeLoginMeta} />;
+  return (
+    <LoginPage
+      user={user}
+      handleChange={handleChangeLoginMeta}
+      dispatchLogin={dispatchLogin}
+      errors={errors}
+    />
+  );
 };
 
 export default observer(LoginPageConnected);
