@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "./i18n";
 import theme from "theme";
+import GlobalStyle from "./GlobalStyle";
 import AppContainer from "./containers/App";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <AppContainer />
+        <GlobalStyle />
       </Router>
     </ThemeProvider>
   );
